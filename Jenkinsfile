@@ -17,7 +17,7 @@ pipeline{
                 jacoco()
             }
         }
-       stage('Quality Gate')
+        stage('Quality Gate'){
             steps {
                 qualitygate = waitForQualityGate()
                 if (qualitygate.status != "OK") 
