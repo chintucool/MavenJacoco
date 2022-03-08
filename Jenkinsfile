@@ -8,7 +8,7 @@ pipeline{
             steps{
                     sh """
                         java -version
-                        mvn test jacoco:report
+                        mvn test jacoco:report sonar:sonar
                     """
              }
         }
@@ -16,6 +16,15 @@ pipeline{
             steps {
                 jacoco()
             }
-        }  
+        }
+       stage('Quality Gate')
+            steps {
+                qualitygate = waitForQualityGate()
+                if (qualitygate.status != "OK") 
+                {  
+                    currentBuild.result = "UNSTABLE"
+                }
+            }
+        }
     }
 }
