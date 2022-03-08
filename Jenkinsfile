@@ -10,6 +10,9 @@ pipeline{
                         java -version
                         mvn test jacoco:report sonar:sonar
                     """
+                    withSonarQubeEnv('sonar') {
+			            sh 'mvn sonar:sonar'
+		            }
              }
         }
        stage('Jacoco coverage') {
