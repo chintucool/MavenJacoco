@@ -8,7 +8,7 @@ pipeline{
             steps{
                     sh """
                         java -version
-                        mvn test 
+                        mvn test jacoco:report
                     """
              }
         }
