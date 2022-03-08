@@ -21,12 +21,14 @@ pipeline{
             }
         }
         stage("Quality Gate") {
-            script {
-                    	qualitygate = waitForQualityGate()                     
-		       	if (qualitygate.status != "OK") {                         
-				currentBuild.result = "UNSTABLE"                     
-		    	}       
-             }
+		steps{
+			script {
+				qualitygate = waitForQualityGate()                     
+				if (qualitygate.status != "OK") {                         
+					currentBuild.result = "UNSTABLE"                     
+				}       
+             		}
+		}
          }
     }
 }
