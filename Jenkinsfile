@@ -19,7 +19,7 @@ pipeline{
         }
         stage('Quality Gate'){
             steps {
-                qualitygate = waitForQualityGate()
+                def qualitygate = waitForQualityGate()
                 if (qualitygate.status != "OK") 
                 {  
                     currentBuild.result = "UNSTABLE"
