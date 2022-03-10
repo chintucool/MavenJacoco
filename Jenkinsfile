@@ -15,12 +15,7 @@ pipeline{
 		            }
              }
         }
-       stage('Jacoco coverage') {
-            steps {
-                jacoco()
-            }
-        }
-        stage("Quality Gate") {
+       stage("Quality Gate") {
 		steps{
 			script {
 				qualitygate = waitForQualityGate()                     
@@ -30,5 +25,10 @@ pipeline{
              		}
 		}
          }
+	stage('Jacoco coverage') {
+            steps {
+                jacoco()
+            }
+        }
     }
 }
